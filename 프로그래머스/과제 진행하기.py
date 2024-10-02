@@ -1,37 +1,35 @@
 ## TODO 1 : gap을 변수로 이용한 풀이
-# def solution(plans):
-#     answer = []
-#     arr=[]
-#     stack=[]
-#     for p in plans:
-#         h=int(p[1][:2])
-#         m=int(p[1][3:5])
-#         ntime=h*60+m
-#         arr.append([p[0],ntime,int(p[2])])
-#     arr.sort(key= lambda x:x[1])
-#
-#     for i in range(len(arr)-1):
-#         t1,t2=arr[i][1],arr[i+1][1]
-#         gap=t2-t1
-#         stack.append([arr[i][0],arr[i][2]]) # 이름, 남은 시간
-# #
-#         #
-#         if gap>0:
-#             while stack and gap:
-#                 if gap>=stack[-1][1]:
-#                     s=stack.pop()
-#                     answer.append(s[0])
-#                     gap-=s[1]
-#                 else: # 남지 않으면
-#                     stack[-1][1]-=gap
-#                     gap=0
-#         else:
-#             s=stack.pop()
-#             answer.append(s[0])
-#     answer.append(arr[-1][0])
-#     for s in stack[::-1]:
-#         answer.append(s[0])
-#     return answer
+def solution(plans):
+    answer = []
+    arr=[]
+    stack=[]
+    for p in plans:
+        h=int(p[1][:2])
+        m=int(p[1][3:5])
+        ntime=h*60+m
+        arr.append([p[0],ntime,int(p[2])])
+    arr.sort(key= lambda x:x[1])
+
+    for i in range(len(arr)-1):
+        t1,t2=arr[i][1],arr[i+1][1]
+        gap=t2-t1
+        stack.append([arr[i][0],arr[i][2]]) # 이름, 남은 시간
+        if gap>0:
+            while stack and gap:
+                if gap>=stack[-1][1]:
+                    s=stack.pop()
+                    answer.append(s[0])
+                    gap-=s[1]
+                else: # 남지 않으면
+                    stack[-1][1]-=gap
+                    gap=0
+        else:
+            s=stack.pop()
+            answer.append(s[0])
+    answer.append(arr[-1][0])
+    for s in stack[::-1]:
+        answer.append(s[0])
+    return answer
 
 # TODO 2:  #=> 이새끼 이해 안 됨
 def solution(plans):
